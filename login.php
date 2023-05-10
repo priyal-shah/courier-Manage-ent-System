@@ -21,7 +21,6 @@ header("location:index.php?page=home");
 <?php include 'header.php' ?>
 <body class="hold-transition login-page">
 <div class="login-box">
-<?php include 'topbar.php' ?>
   </br></br></br></br></br></br></br>
   </br></br></br></br></br></br></br>
   <div class="login-logo">

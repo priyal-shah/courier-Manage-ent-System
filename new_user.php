@@ -41,7 +41,7 @@
 							<img src="<?php echo isset($avatar) ? '../assets/uploads/'.$avatar :'' ?>" alt="" id="cimg" class="img-fluid img-thumbnail">
 						</div>
 						<b class="text-muted">System Credentials</b>
-						<?php if($_SESSION['login_type'] == 1): ?>
+						<!-- <?php if($_SESSION['login_type'] == 1): ?> -->
 						<div class="form-group">
 							<label for="" class="control-label">User Role</label>
 							<select name="type" id="type" class="custom-select custom-select-sm">
@@ -49,7 +49,7 @@
 								<option value="1" <?php echo isset($type) && $type == 1 ? 'selected' : '' ?>>Admin</option>
 							</select>
 						</div>
-						<?php else: ?>
+						<!-- <?php else: ?> -->
 							<input type="hidden" name="type" value="3">
 						<?php endif; ?>
 						<div class="form-group">

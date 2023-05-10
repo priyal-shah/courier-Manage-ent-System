@@ -104,7 +104,7 @@
               <td><input type="text" name='height[]' value="<?php echo isset($height) ? $height :'' ?>" required></td>
               <td><input type="text" name='length[]' value="<?php echo isset($length) ? $length :'' ?>" required></td>
               <td><input type="text" name='width[]' value="<?php echo isset($width) ? $width :'' ?>" required></td>
-              <td><input type="text" class="text-right number" name='price[]' value="<?php echo isset($price) ? $price :'' ?>" required></td>
+              <td class="pricetag"><input type="text" class="text-right number" name='price[]' value="<?php echo isset($price) ? $price :'' ?>" required></td>
               <?php if(!isset($id)): ?>
               <td><button class="btn btn-sm btn-danger" type="button" onclick="$(this).closest('tr').remove() && calc()"><i class="fa fa-times"></i></button></td>
               <?php endif; ?>
@@ -142,7 +142,7 @@
         <td><input type="text" name='height[]' required></td>
         <td><input type="text" name='length[]' required></td>
         <td><input type="text" name='width[]' required></td>
-        <td><input type="text" class="text-right number" name='price[]' required></td>
+        <td class="pricetag"><input type="text" class="text-right number" name='price[]' required></td>
         <td><button class="btn btn-sm btn-danger" type="button" onclick="$(this).closest('tr').remove() && calc()"><i class="fa fa-times"></i></button></td>
       </tr>
   </table>
@@ -155,6 +155,11 @@
         $('#tbi-field').show()
       }
   })
+  $('[name="weight[]"]').keyup(function(){
+    calprice()
+      calc()
+    })
+
     $('[name="price[]"]').keyup(function(){
       calc()
     })
@@ -218,16 +223,40 @@
           reader.readAsDataURL(input.files[0]);
       }
   }
+  const a=[];
   function calc(){
 
         var total = 0 ;
-         $('#parcel-items [name="price[]"]').each(function(){
-          var p = $(this).val();
-              p =  p.replace(/,/g,'')
-              p = p > 0 ? p : 0;
-            total = parseFloat(p) + parseFloat(total)
-         })
+        //  $('#parcel-items [name="price[]"]').each(function(){
+        //   var p = $(this).val();
+        //       p =  p.replace(/,/g,'')
+        //       p = p > 0 ? p : 0;
+        //     total = parseFloat(p) + parseFloat(total)
+        //  })
+
+
+        a.forEach(function(value){
+          total=total+value;
+        })
+
+
          if($('#tAmount').length > 0)
          $('#tAmount').text(parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
+  }
+
+  
+
+  function calprice(){
+    var totalp = 0 ;
+    $('#parcel-items [name="weight[]"]').each(function(){
+          var p = $(this).val()*0.5;
+              p = p > 0 ? p : 0;
+            totalp = parseFloat(p);
+            
+         })
+         a.push(totalp);
+         if($('.pricetag').length > 0)
+         $('.pricetag').text(parseFloat(totalp).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
+         return a;
   }
 </script>

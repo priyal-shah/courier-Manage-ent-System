@@ -8,7 +8,7 @@
 	<div class="card card-outline card-primary">
 		<div class="card-body">
 			<form action="" id="manage-staff">
-        <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+        <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>" required>
         <div class="row">
           <div class="col-md-12">
             <div id="msg" class=""></div>
@@ -42,7 +42,7 @@
             <div class="row">
               <div class="col-sm-6 form-group ">
                 <label for="" class="control-label">Email</label>
-                <input type="email" name="email" id="" class="form-control form-control-sm" value="<?php echo isset($email) ? $email : '' ?>" required>
+                <input type="email" name="email" id=""  class="form-control form-control-sm" value="<?php echo isset($email) ? $email : '' ?>" required>
               </div>
             </div>
             <div class="row">
